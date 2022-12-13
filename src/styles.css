@@ -1,0 +1,376 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-text-base: 255, 255, 255;
+    --color-text-muted: 199, 210, 254;
+    --color-text-inverted: 79, 70, 229;
+    --color-fill: 67, 56, 202;
+    --color-button-accent: 255, 255, 255;
+    --color-button-accent-hover: 238, 242, 255;
+    --color-button-muted: 99, 102, 241;
+  }
+
+  .theme-swiss {
+    --color-text-base: 255, 255, 255;
+    --color-text-muted: 254, 202, 202;
+    --color-text-inverted: 220, 38, 38;
+    --color-fill: 185, 28, 28;
+    --color-button-accent: 255, 255, 255;
+    --color-button-accent-hover: 254, 242, 242;
+    --color-button-muted: 239, 68, 68;
+  }
+
+  .theme-neon {
+    --color-text-base: 17, 24, 2;
+    --color-text-muted: 47, 67, 6;
+    --color-text-inverted: 235, 250, 204;
+    --color-fill: 179, 255, 23;
+    --color-button-accent: 36, 52, 3;
+    --color-button-accent-hover: 55, 79, 5;
+    --color-button-muted: 212, 255, 122;
+  }
+
+  .theme-peaches {
+
+    --color-fill-100: #FFBFA3;
+    --color-fill-90: #FFC5AC;
+    --color-fill-80: #FFCCB5;
+    --color-fill-70: #FFD2BF;
+    --color-fill-60: #FFD9C8;
+    --color-fill-50: #FFDFD1;
+    --color-fill-40: #FFE5DA;
+    --color-fill-30: #FFECE3;
+    --color-fill-20: #FFF2ED;
+    --color-fill-10: #FFF9F6;
+
+  }
+
+  .theme-peach {
+    --color-text-base: 29, 29, 29;
+    --color-fill: 255, 191, 163;
+    --color-text-link: 128, 35, 118;
+  }
+
+  .theme-purple {
+    --color-text-base: 29, 29, 29;
+    --color-fill: 128, 35, 118;
+    --color-text-link: 37, 163, 163;
+  }
+
+  .theme-green {
+    --color-text-base: 29, 29, 29;
+    --color-fill: 0, 217, 116;
+    --color-text-link: 37, 163, 163;
+
+  }
+
+  .theme-blue {
+    --color-text-base: 29, 29, 29;
+    --color-fill: 34, 186, 187;
+    --color-text-link: 37, 163, 163;
+  }
+
+  .theme-green-h {
+    --color-text-base: 29, 29, 29;
+    --color-fill: 111, 174, 149;
+    --color-text-link: 37, 163, 163;
+  }
+
+  .theme-blue-light {
+    --color-text-base: 29, 29, 29;
+    --color-fill: 84, 198, 235;
+    --color-text-link: 37, 163, 163;
+  }
+
+  .theme-orange {
+    --color-text-base: 29, 29, 29;
+    --color-fill: 255, 117, 87;
+    --color-text-link: 37, 163, 163;
+  }
+
+  .theme-gd {
+    --color-text-base: 29, 29, 29;
+    --color-fill: 216, 190, 0;
+    --color-text-link: 37, 163, 163;
+  }
+
+  .LG-Header1 {
+    font-family: 'Suez One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 46px;
+    line-height: 60px;
+    letter-spacing: -0.02em;
+  }
+
+  .LG-Header2 {
+    font-family: 'Suez One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 39px;
+    letter-spacing: -0.02em;
+  }
+
+  .tete {
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    padding-left: 2.25rem;
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .Back {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+  }
+
+  .bimage {
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+
+  .timage {
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+
+  .LG-Sub-Title {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 720;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+
+  }
+
+  .LG-Body-Regular {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+  }
+
+  .LG-Body-Bold {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+  }
+
+  .LG-Link-Text {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+    text-decoration-line: underline;
+    color: #FF0000;
+  }
+
+  .LG-Highlighted-Text {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+    color: #444444;
+  }
+
+  .MD-Header1 {
+    font-family: 'Suez One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 47px;
+    letter-spacing: -0.02em;
+
+  }
+
+  .MD-Header2 {
+    font-family: 'Suez One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31px;
+    letter-spacing: -0.02em;
+  }
+
+  .MD-Sub-Title {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 720;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+
+  }
+
+  .MD-Body-Regular {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .MD-Body-Bold {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .MD-Link-Text {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    text-decoration-line: underline;
+    color: #FF0000;
+  }
+
+  .MD-Highlighted-Text {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    color: #444444;
+  }
+
+
+  .SM-Header1 {
+    font-family: 'Suez One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 31px;
+    letter-spacing: -0.02em;
+
+  }
+
+  .SM-Header2 {
+    font-family: 'Suez One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+  }
+
+  .SM-Sub-Title {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 720;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+
+  }
+
+  .SM-Body-Regular {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .SM-Body-Bold {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .SM-Link-Text {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    text-decoration-line: underline;
+    color: #FF0000;
+  }
+
+  .SM-Highlighted-Text {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    color: #444444;
+  }
+
+  .quote {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px 8px 24px;
+    gap: 16px;
+    background: rgba(128, 35, 118, 0.1);
+    border-width: 0.5px 0px;
+    border-style: solid;
+    border-color: #802376;
+    border-radius: 0px;
+  }
+
+  .quoteTitle {
+    /* lg Body bold */
+
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    /* identical to box height, or 117% */
+
+    text-align: left;
+    letter-spacing: 0.02em;
+    padding: 6px 24px;
+
+    /* Combination 1/Secondary 100 */
+
+    color: #802376;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+  }
+
+}

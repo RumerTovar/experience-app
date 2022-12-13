@@ -1,0 +1,74 @@
+"""
+Each experience has a unique ID.
+Expiriences are part of experience and program  catalogs.
+"""
+
+type Experience  {
+	id: ID!
+ 	subject: [Subject!]!
+	title: String!
+	authors: [Authors!]!
+	gradeLevel: [String!]!
+	experience: [experienceType!]!:[congnitiveType!]!
+	goal: String
+	background: String!
+	objectives: String
+	outcomes: String
+	productDeliverables: String
+	timeLine: [TimeLine]
+	assessments: [Assessment]
+	mainStudentInquireis: String
+	mainQuestions: String
+}
+
+
+enum Subject {
+	PE
+	Arts
+	Arts:Visual
+	Arts:Performing
+	Science
+	Science:Math
+	Science:Physics
+	Science:Chemistry
+	Science:Biology
+	Science:Computer
+	STEM
+	Humanities
+	Humanities:History
+	Humanities:English
+	Humanities:Language-SPA
+	Humanities:Language-FR
+	Humanities:Language-IT
+	Humanities:Language-CHI
+	Humanities:Literature
+	Humanities:Economics
+	Humanities:Geography
+	MindBody:Yoga
+}
+
+
+enum experienceType {
+	Project:congnitiveType!
+	Reading:congnitiveType!
+	Presentation:congnitiveType!
+	Writen:congnitiveType!
+	Test:congnitiveType!
+	Quiz:congnitiveType!
+	Exam:congnitiveType!
+}
+
+enum congnitiveType {
+        Create
+	Evaluate
+	Understand
+	Apply
+	Remember	
+
+}
+
+type TimeLine  {
+ 	 id:ID!
+	startDate: DateTime!
+	endDate: DateTime!
+}

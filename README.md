@@ -1,1 +1,3 @@
-# Experiences-App
+# Experiences
+
+A Personal experiences catalog app.
