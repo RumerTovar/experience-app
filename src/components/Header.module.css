@@ -1,0 +1,98 @@
+.navContainer {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.navLogoContainer {
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ gap: 5px;
+}
+
+.navTitle {
+ font-family: 'Suez One';
+ font-style: normal;
+ font-weight: 400;
+ font-size: 24px;
+ line-height: 31px;
+ letter-spacing: -0.02em;
+}
+
+.imageContainer {
+ width: 73px;
+}
+
+.buttom {
+ box-sizing: border-box;
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ padding: 4px 8px;
+ gap: 4px;
+ background: #ffffff;
+ border: 1px solid #e5e5e5;
+ box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
+ border-radius: 12px;
+ flex: none;
+ order: 0;
+ flex-grow: 0;
+}
+
+.buttomText {
+ font-family: 'Syne';
+ font-style: normal;
+ font-weight: 720;
+ font-size: 14px;
+ line-height: 16px;
+
+ display: flex;
+ align-items: center;
+ text-align: center;
+ letter-spacing: -0.02em;
+ text-transform: uppercase;
+ color: #292929;
+ flex: none;
+ order: 1;
+ flex-grow: 0;
+}
+
+.houseImage {
+ height: 12px;
+}
+
+@media (min-width: 640px) {
+ .imageContainer {
+  width: 113px;
+ }
+
+ .buttomText {
+  font-size: 18px;
+ }
+
+ .navTitle {
+  font-size: 36px;
+ }
+ .houseImage {
+  height: 16px;
+ }
+}
+@media (min-width: 1024px) {
+ .imageContainer {
+  width: 143px;
+ }
+
+ .navTitle {
+  font-size: 46px;
+ }
+
+ .buttomText {
+  font-size: 24px;
+ }
+
+ .houseImage {
+  height: 24px;
+ }
+}

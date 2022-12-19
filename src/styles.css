@@ -370,7 +370,7 @@
 
 .header-container {
  background: #ffebe1;
- padding: 40px 0px;
+ padding: 13px 0px;
  padding-left: 24px;
  padding-right: 24px;
  padding-bottom: 26px;
@@ -430,6 +430,7 @@
 
 .header-title {
  display: flex;
+ padding: 40px 0px;
  justify-content: center;
  align-items: center;
  padding-bottom: 30px;
@@ -589,7 +590,7 @@ img {
 
 @media (min-width: 640px) {
  .header-container {
-  padding: 68px 80px;
+  padding: 13.5px 80px;
   padding-bottom: 26px;
   gap: 32px;
   width: 100%;
@@ -605,7 +606,6 @@ img {
 
  .header-title h1 {
   flex: 1.5;
-
   font-size: 36px;
  }
 
@@ -627,7 +627,7 @@ img {
 @media (min-width: 1024px) {
  .header-container {
   background: #ffebe1;
-  padding: 68px 80px;
+  padding: 13.5px 80px;
   padding-bottom: 26px;
   gap: 32px;
   width: 100%;
