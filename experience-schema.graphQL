@@ -12,59 +12,67 @@ And we want to search:
 -. Experience Collaborator
 """
 type Experience {
-  id: ID!
-  dateCreated: DateTime @search
-  subject: Subject!
-  title: String!
-  authors: [Authors!]!
-  collaborators: Collaborators
-  gradeLevel: GradeLevel!
-  experience: ExperienceType!
-  congnitive: CongnitiveType!
-  goal: String
-  background: String!
-  objectives: String
-  outcomes: String
-  productDeliverables: String
-  timeLine: [TimeLine]
-  assessments: [Assessment]
-  mainStudentInquireis: String
-  mainQuestions: String
+ id: ID!
+ dateCreated: DateTime @search
+ subject: SubjectTuple!
+ title: String!
+ authors: [Authors!]!
+ collaborators: Collaborators
+ gradeLevel: GradeLevel!
+ experience: ExperienceType!
+ congnitive: CongnitiveType!
+ goal: String
+ background: String!
+ objectives: String
+ outcomes: String
+ productDeliverables: String
+ timeLine: [TimeLine]
+ assessments: [Assessment]
+ mainStudentInquireis: String
+ mainQuestions: String
 }
 
-enum Subject {
-  PE
-  Arts
-  Arts_Painting
-  Arts_Sculpture
-  Arts_Photography
-  Arts_Digital
-  Arts_Music
-  Arts_Cinema
-  Arts_Theater
-  Science
-  Science_Math
-  Science_Physics
-  Science_Chemistry
-  Science_Biology
-  Science_Computer
-  STEM
-  Humanities
-  Humanities_History
-  Humanities_Language
-  Humanities_Literature
+enum SubjectDomain {
+ PE
+ Arts
+ Science
+ STEM
+ Humanities
+}
+
+enum SubjectInstance {
+ Painting
+ Sculpture
+ Photography
+ Digital
+ Music
+ Cinema
+ Theater
+ Math
+ Physics
+ Chemistry
+ Biology
+ Computer
+ History
+ Language
+ Literature
+}
+
+type SubjectTuple {
+ domain: SubjectDomain!
+ instance: SubjectInstance!
 }
 
 type Authors implements ContactInfo {
-  id: ID!
-  ContactInfo: [ContactInfo!]!
-  active: Boolean!
+ id: ID!
+ ContactInfo: [ContactInfo!]!
+ active: Boolean!
 }
 
 type Collaborators implements ContactInfo {
-  id: ID!
-  ContactInfo: [ContactInfo!]!
-  active: Boolean!
+ id: ID!
+ ContactInfo: [ContactInfo!]!
+ active: Boolean!
 }
 
 """
@@ -88,53 +96,60 @@ delete their OWN experiences.
     3-. Using Apple
 """
 interface ContactInfo @secret(field: "password") {
-  id: ID!
-  firstName: String!
-  lastName: String!
-  email: String! @id
-  singInProvider: SingInProvider!
-  simpleUser: Boolean!
-  collaborator: Boolean!
-  superUser: Boolean!
+ id: ID!
+ firstName: String!
+ lastName: String!
+ email: String! @id
+ singInProvider: SingInProvider!
+ simpleUser: Boolean!
+ collaborator: Boolean!
+ superUser: Boolean!
 }
 
 enum SingInProvider {
-  Google
-  Apple
-  Local
+ Google
+ Apple
+ Local
 }
 
 enum ExperienceType {
-  Project
-  Reading
-  Presentation
-  Writen
-  Test
-  Quiz
-  Exam
+ Project
+ Reading
+ Presentation
+ Writen
+ Test
+ Quiz
+ Exam
 }
 
 enum CongnitiveType {
-  Create
-  Evaluate
-  Analyze
-  Understand
-  Apply
-  Remember
+ Create
+ Evaluate
+ Analyze
+ Understand
+ Apply
+ Remember
 }
 
 type TimeLine {
-  id: ID!
-  startDate: DateTime!
-  endDate: DateTime!
+ id: ID!
+ startDate: DateTime!
+ endDate: DateTime!
 }
 
 enum GradeLevel {
-  Sixth
-  Seventh
-  Eighth
-  Nineth
-  Tenth
-  Eleventh
-  Twelveth
+ Sixth
+ Seventh
+ Eighth
+ Nineth
+ Tenth
+ Eleventh
+ Twelveth
+}
+
+type Assessment {
+ id: ID!
+ title: String!
+ description: String!
+ date: DateTime!
 }
