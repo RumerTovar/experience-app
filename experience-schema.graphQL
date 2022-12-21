@@ -1,74 +1,140 @@
 """
 Each experience has a unique ID.
-Expiriences are part of experience and program  catalogs.
+Experiences are part of experience and program catalogs.
+In the Experience Catalog UI, We want to filter by:
+- Grade
+- Cognitive Level
+- Experience Type
+And we want to search:
+-. Experience Authors (email, first name, last name)
+-. Experience Titles
+-. Experience Subject
+-. Experience Collaborator
 """
-
-type Experience  {
-	id: ID!
- 	subject: [Subject!]!
-	title: String!
-	authors: [Authors!]!
-	gradeLevel: [String!]!
-	experience: [experienceType!]!:[congnitiveType!]!
-	goal: String
-	background: String!
-	objectives: String
-	outcomes: String
-	productDeliverables: String
-	timeLine: [TimeLine]
-	assessments: [Assessment]
-	mainStudentInquireis: String
-	mainQuestions: String
+type Experience {
+  id: ID!
+  dateCreated: DateTime @search
+  subject: Subject!
+  title: String!
+  authors: [Authors!]!
+  collaborators: Collaborators
+  gradeLevel: GradeLevel!
+  experience: ExperienceType!
+  congnitive: CongnitiveType!
+  goal: String
+  background: String!
+  objectives: String
+  outcomes: String
+  productDeliverables: String
+  timeLine: [TimeLine]
+  assessments: [Assessment]
+  mainStudentInquireis: String
+  mainQuestions: String
 }
-
 
 enum Subject {
-	PE
-	Arts
-	Arts:Visual
-	Arts:Performing
-	Science
-	Science:Math
-	Science:Physics
-	Science:Chemistry
-	Science:Biology
-	Science:Computer
-	STEM
-	Humanities
-	Humanities:History
-	Humanities:English
-	Humanities:Language-SPA
-	Humanities:Language-FR
-	Humanities:Language-IT
-	Humanities:Language-CHI
-	Humanities:Literature
-	Humanities:Economics
-	Humanities:Geography
-	MindBody:Yoga
+  PE
+  Arts
+  Arts_Painting
+  Arts_Sculpture
+  Arts_Photography
+  Arts_Digital
+  Arts_Music
+  Arts_Cinema
+  Arts_Theater
+  Science
+  Science_Math
+  Science_Physics
+  Science_Chemistry
+  Science_Biology
+  Science_Computer
+  STEM
+  Humanities
+  Humanities_History
+  Humanities_Language
+  Humanities_Literature
 }
 
-
-enum experienceType {
-	Project:congnitiveType!
-	Reading:congnitiveType!
-	Presentation:congnitiveType!
-	Writen:congnitiveType!
-	Test:congnitiveType!
-	Quiz:congnitiveType!
-	Exam:congnitiveType!
+type Authors implements ContactInfo {
+  id: ID!
+  ContactInfo: [ContactInfo!]!
+  active: Boolean!
 }
 
-enum congnitiveType {
-        Create
-	Evaluate
-	Understand
-	Apply
-	Remember	
-
+type Collaborators implements ContactInfo {
+  id: ID!
+  ContactInfo: [ContactInfo!]!
+  active: Boolean!
 }
 
-type TimeLine  {
- 	 id:ID!
-	startDate: DateTime!
-	endDate: DateTime!
+"""
+-. All signed-up users are Simple Users by default.
+-. A Simple user can create, read, update, and
+delete their OWN experiences.
+-. A simple user can read ANY experience.
+-. A Collaborator can EDIT and UPDATE
+ other authors’ experiences but not DELETE them.
+-. A super user is a user that can do EVERYTHING
+ , including deleting experiences.
+-. By default, there is only one superuser
+ in the system.
+-. Only a superuser can assign a superuser or collaborator role to other users.
+-. Only superusers can access the console page.
+-. A superuser can disable users.
+-. A disabled user will not be able to log in with the same user id.
+-. Users are authorized and authenticated in 3 ways:
+    1-. Local. Using Dgraph. Minimum Password length of 6 characters. Passwords are encrypted.
+    2-. Using Google
+    3-. Using Apple
+"""
+interface ContactInfo @secret(field: "password") {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String! @id
+  singInProvider: SingInProvider!
+  simpleUser: Boolean!
+  collaborator: Boolean!
+  superUser: Boolean!
+}
+
+enum SingInProvider {
+  Google
+  Apple
+  Local
+}
+
+enum ExperienceType {
+  Project
+  Reading
+  Presentation
+  Writen
+  Test
+  Quiz
+  Exam
+}
+
+enum CongnitiveType {
+  Create
+  Evaluate
+  Analyze
+  Understand
+  Apply
+  Remember
+}
+
+type TimeLine {
+  id: ID!
+  startDate: DateTime!
+  endDate: DateTime!
+}
+
+enum GradeLevel {
+  Sixth
+  Seventh
+  Eighth
+  Nineth
+  Tenth
+  Eleventh
+  Twelveth
 }
