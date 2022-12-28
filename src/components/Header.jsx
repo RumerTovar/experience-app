@@ -1,19 +1,20 @@
-import React from 'react';
-import '../styles.css';
 import styles from './Header.module.css';
-
-// assets
-
-import oneness from '../assets/images/icons/ohm.svg';
+import logo from '../assets/images/logo.svg';
 import experienceLogo from '../../src/assets/images/experience.svg';
 import house from '../assets/images/icons/house.svg';
+import Hero from './Hero';
 
-const Header = ({ img, author, experience, subjectType, gradeLevel }) => {
- console.log(author);
+const isEmpty = (obj) => {
+ return Object.keys(obj).length === 0;
+};
 
+const Header = ({ setIsOpen, profile, setProfile }) => {
+ const logOut = () => {
+  setProfile({});
+ };
  return (
-  <>
-   <header className='header-container'>
+  <div className={styles.headerWrapper}>
+   <header className={styles.headerContainer}>
     <div className={styles.navContainer}>
      <div className={styles.navLogoContainer}>
       <div className={styles.imageContainer}>
@@ -21,37 +22,31 @@ const Header = ({ img, author, experience, subjectType, gradeLevel }) => {
       </div>
       <span className={styles.navTitle}>Catalog</span>
      </div>
-     <button className={styles.buttom}>
-      <img className={styles.houseImage} src={house} alt='house' />
-      <span className={styles.buttomText}>LOGIN</span>
-     </button>
+     {isEmpty(profile) ? (
+      <button className={styles.buttom}>
+       <img className={styles.houseImage} src={house} alt='house' />
+       <span onClick={() => setIsOpen(true)} className={styles.buttomText}>
+        login
+       </span>
+      </button>
+     ) : (
+      <button className={styles.buttom}>
+       <img className={styles.houseImage} src={house} alt='house' />
+       <span onClick={() => logOut()} className={styles.buttomText}>
+        {`${profile.given_name.charAt(0)} ${profile.family_name.charAt(0)}`}
+       </span>
+      </button>
+     )}
     </div>
-    <div className='header-title'>
-     <h1>Pick or Come Up With a Quote And Express it Artistically</h1>
-     <div className='image-container'>
-      <img src={img} alt='logo' />
-     </div>
-    </div>
-    <div className='header-description'>
-     <div className='desc-content'>
-      <p>author</p>
-      <span className='header-author'>{author}</span>
-     </div>
-     <div className='desc-content'>
-      <p>Experience</p>
-      <span>Project : {experience}</span>
-     </div>
-     <div className='desc-content'>
-      <p>subject type</p>
-      <span>Art : {subjectType}</span>
-     </div>
-     <div className='desc-content'>
-      <p>grade level</p>
-      <span>{gradeLevel} grade</span>
-     </div>
-    </div>
+    <Hero
+     img={logo}
+     author={'Luciano Polo'}
+     subjectType={'Painting'}
+     experience={'Create'}
+     gradeLevel={'9th'}
+    />
    </header>
-  </>
+  </div>
  );
 };
 
