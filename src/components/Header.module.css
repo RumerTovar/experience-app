@@ -1,3 +1,36 @@
+.headerWrapper {
+ background-color: #ffebe1;
+ display: flex;
+ justify-content: center;
+}
+
+.headerContainer {
+ background: #ffebe1;
+ padding: 13px 0px;
+ padding-left: 24px;
+ padding-right: 24px;
+ padding-bottom: 26px;
+ gap: 32px;
+ width: 100%;
+}
+
+.headerContainer h1 {
+ display: flex;
+ padding: 40px 0px;
+ justify-content: center;
+ align-items: center;
+ padding-bottom: 30px;
+ flex: 1;
+ font-family: 'Suez One';
+ font-style: normal;
+ font-weight: 400;
+ font-size: 24px;
+ line-height: 31px;
+ letter-spacing: -0.02em;
+ margin: 0;
+ padding: 0;
+}
+
 .navContainer {
  display: flex;
  flex-direction: row;
@@ -47,16 +80,12 @@
  font-weight: 720;
  font-size: 14px;
  line-height: 16px;
-
  display: flex;
  align-items: center;
  text-align: center;
  letter-spacing: -0.02em;
  text-transform: uppercase;
  color: #292929;
- flex: none;
- order: 1;
- flex-grow: 0;
 }
 
 .houseImage {
@@ -64,6 +93,18 @@
 }
 
 @media (min-width: 640px) {
+ .headerContainer {
+  padding: 13.5px 80px;
+  padding-bottom: 26px;
+  gap: 32px;
+  width: 100%;
+ }
+
+ .headerContainer h1 {
+  flex: 1.5;
+  font-size: 36px;
+ }
+
  .imageContainer {
   width: 113px;
  }
@@ -80,6 +121,23 @@
  }
 }
 @media (min-width: 1024px) {
+ .headerContainer {
+  background: #ffebe1;
+  padding: 13.5px 80px;
+  padding-bottom: 26px;
+  gap: 32px;
+  width: 100%;
+  max-width: 1300px;
+ }
+
+ .headerContainer h1 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 46px;
+  line-height: 60px;
+  letter-spacing: -0.02em;
+ }
+
  .imageContainer {
   width: 143px;
  }

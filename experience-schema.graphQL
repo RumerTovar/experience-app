@@ -27,9 +27,9 @@ type Experience {
  outcomes: String
  productDeliverables: String
  timeLine: [TimeLine]
- assessments: [Assessment]
  mainStudentInquireis: String
  mainQuestions: String
+ active: Boolean!
 }
 
 enum SubjectDomain {
@@ -145,11 +145,4 @@ enum GradeLevel {
  Tenth
  Eleventh
  Twelveth
-}
-
-type Assessment {
- id: ID!
- title: String!
- description: String!
- date: DateTime!
 }

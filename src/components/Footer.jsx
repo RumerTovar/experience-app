@@ -1,13 +1,14 @@
 import React from 'react';
 import '../styles.css';
-import styles from './Header.module.css';
+import styles from './Footer.module.css';
 
 const Footer = ({ author }) => {
  return (
-  <div className='footer-container'>
+  <div className={styles.footerContainer}>
    <footer>
     <span>
-     Design & illustrations by <span className='author-footer'>{author}</span>
+     Design & illustrations by{' '}
+     <span className={styles.authorFooter}>{author}</span>
     </span>
    </footer>
   </div>
