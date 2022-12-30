@@ -7,8 +7,7 @@ import Input from './Input';
 import { useForm } from '../../hooks/localLogin/useForm';
 
 export default function Modal({ setIsOpen, setProfile, setSignUpModalIsOpen }) {
- const { login } = useGooglehook(setProfile);
-
+ const { login } = useGooglehook(setProfile, setIsOpen);
  const { form, errors, handleChange, handleBlur, handleSubmit } = useForm();
 
  const refModal = useRef();
@@ -33,7 +32,6 @@ export default function Modal({ setIsOpen, setProfile, setSignUpModalIsOpen }) {
 
  return (
   <>
-   (
    <div className={styles.modal}>
     <div className={styles.modalContent} ref={refModal}>
      <h3 className={styles.modalTitle}>Welcome back</h3>
@@ -81,7 +79,6 @@ export default function Modal({ setIsOpen, setProfile, setSignUpModalIsOpen }) {
      </button>
     </div>
    </div>
-   )
   </>
  );
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const googleUrl = 'https://www.googleapis.com/oauth2/v3/userinfo';
 
-export const useGooglehook = (setProfile) => {
+export const useGooglehook = (setProfile, setIsOpen) => {
  const login = useGoogleLogin({
   onSuccess: async (response) => {
    try {
@@ -14,6 +14,7 @@ export const useGooglehook = (setProfile) => {
      },
     });
     setProfile(res.data);
+    setIsOpen(false);
     console.log(res.data);
    } catch (error) {
     console.error(error);

@@ -17,6 +17,7 @@
  justify-content: center;
  align-items: center;
  width: 100%;
+ max-width: 350px;
  align-items: center;
  padding: 24px;
  gap: 16px;
@@ -138,15 +139,31 @@
  color: #802376;
 }
 
+@media (min-width: 640px) {
+ .modalContent {
+  max-width: 400px;
+  padding: 32px;
+ }
 
-@media screen and (min-width: 768px){
-    .modalContent{
-        max-width: 384px;
-    }
-}
+ .modalTitle {
+  font-size: 36px;
+ }
 
-@media screen and (min-width: 1024px){
-    .modalContent{
-        max-width: 484px;
-    }
+ .description {
+  font-size: 18px;
+  padding: 8px 0;
+ }
+
+ .recoverPassword {
+  font-size: 14px;
+  padding-bottom: 24px;
+ }
+
+ .loginButton span {
+  font-size: 14px;
+ }
+
+ .signUpButton span {
+  font-size: 14px;
+ }
 }

@@ -10,7 +10,7 @@ const initialForm = {
  confirmPassword: '',
 };
 
-export const useForm = () => {
+export const useForm = (setSignUpModalIsOpen) => {
  const [form, setForm] = useState(initialForm);
  const [errors, setErrors] = useState({});
 
@@ -42,12 +42,6 @@ export const useForm = () => {
    errors.password === true &&
    errors.confirmPassword === true
   ) {
-   alert('submitting form');
-   /*
-This is an example snippet - you should consider tailoring it
-to your service.
-*/
-
    async function fetchGraphQL(operationsDoc, operationName, variables) {
     const result = await fetch(
      'https://blue-surf-790015.us-east-1.aws.cloud.dgraph.io/graphql',
@@ -94,22 +88,16 @@ to your service.
 
     if (errors) {
      // handle those errors like a pro
-     const errorMessage =
-      "couldn't rewrite mutation addAuthors because failed to rewrite mutation payload because id rumertovar7474@gmail.com already exists for field email inside type Authors";
-
-     if (errors[0].message === errorMessage)
-      return alert('rumertovar7474@gmail.com already exists');
-
-     console.log(errors);
+     return alert(errors[0].message);
     }
 
     // do something great with this precious data
+    setSignUpModalIsOpen(false);
     console.log(data);
    }
 
    startExecuteMyMutation();
   } else {
-   alert('Wrong form');
    console.log('wrong form');
    console.log(errors);
    return;
