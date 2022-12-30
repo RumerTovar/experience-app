@@ -8,7 +8,8 @@ import { useForm } from '../../hooks/localSignUp/useForm';
 export default function SignUpModal({ setSignUpModalIsOpen }) {
  const refModal = useRef();
 
- const { form, errors, handleChange, handleBlur, handleSubmit } = useForm();
+ const { form, errors, handleChange, handleBlur, handleSubmit } =
+  useForm(setSignUpModalIsOpen);
 
  useEffect(() => {
   const closeModal = (e) => {
@@ -25,7 +26,6 @@ export default function SignUpModal({ setSignUpModalIsOpen }) {
 
  return (
   <>
-   (
    <div className={styles.modal}>
     <div className={styles.modalContent} ref={refModal}>
      <h3 className={styles.modalTitle}>Come join us!</h3>
@@ -95,7 +95,6 @@ export default function SignUpModal({ setSignUpModalIsOpen }) {
      </form>
     </div>
    </div>
-   )
   </>
  );
 }

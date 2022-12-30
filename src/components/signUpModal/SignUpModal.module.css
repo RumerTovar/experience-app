@@ -17,6 +17,7 @@
  justify-content: center;
  align-items: center;
  width: 100%;
+ max-width: 296px;
  align-items: center;
  padding: 24px;
  gap: 8px;
@@ -48,14 +49,12 @@
 }
 
 .loginButton {
+ margin-top: 16px;
  width: 100%;
  display: flex;
  flex-direction: row;
  justify-content: center;
  align-items: center;
- margin: 16px 0px;
- margin-bottom: 0px;
- padding: 4px 8px;
  gap: 4px;
  background: #f9eef8;
  border: 1px solid #f9eef8;
@@ -87,7 +86,6 @@
  flex-direction: row;
  justify-content: center;
  align-items: center;
- padding: 4px 8px;
  gap: 4px;
  background: #ffffff;
  border: 1px solid #e5e5e5;
@@ -125,4 +123,40 @@
 
 .googleButton {
  background-color: red;
+}
+
+@media (min-width: 640px) {
+ .modalTitle {
+  font-size: 36px;
+  line-height: 47px;
+  padding-bottom: 8px;
+ }
+
+ .description {
+  font-size: 18px;
+  line-height: 20px;
+  padding-bottom: 24px;
+ }
+
+ .modalContent {
+  max-width: 728px;
+  padding: 32px;
+ }
+
+ .formButton {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, auto-fit);
+  gap: 12px;
+ }
+
+ .loginButton {
+  height: 100%;
+  grid-column: 1/-1;
+ }
+
+ .loginButton span {
+  font-size: 18px;
+  line-height: 20px;
+ }
 }

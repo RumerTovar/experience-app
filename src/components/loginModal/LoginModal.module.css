@@ -17,6 +17,7 @@
  justify-content: center;
  align-items: center;
  width: 100%;
+ max-width: 350px;
  align-items: center;
  padding: 24px;
  gap: 16px;
@@ -135,4 +136,33 @@
  line-height: 20px;
  letter-spacing: 0.02em;
  color: #802376;
+}
+
+@media (min-width: 640px) {
+ .modalContent {
+  max-width: 400px;
+  padding: 32px;
+ }
+
+ .modalTitle {
+  font-size: 36px;
+ }
+
+ .description {
+  font-size: 18px;
+  padding: 8px 0;
+ }
+
+ .recoverPassword {
+  font-size: 14px;
+  padding-bottom: 24px;
+ }
+
+ .loginButton span {
+  font-size: 14px;
+ }
+
+ .signUpButton span {
+  font-size: 14px;
+ }
 }
