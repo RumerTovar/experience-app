@@ -10,7 +10,8 @@ const initialForm = {
  confirmPassword: '',
 };
 
-export const useForm = (setSignUpModalIsOpen) => {
+export const useForm = (setSignUpModalIsOpen, setIsOpen) => {
+ console.log();
  const [form, setForm] = useState(initialForm);
  const [errors, setErrors] = useState({});
 
@@ -84,15 +85,17 @@ export const useForm = (setSignUpModalIsOpen) => {
    }
 
    async function startExecuteMyMutation() {
-    const { errors, data } = await executeMyMutation();
+    const { errors: error, data } = await executeMyMutation();
 
-    if (errors) {
+    if (error) {
      // handle those errors like a pro
-     return alert(errors[0].message);
+
+     return setErrors(validateForm(form, 'email', error));
     }
 
     // do something great with this precious data
     setSignUpModalIsOpen(false);
+    setIsOpen(true);
     console.log(data);
    }
 
