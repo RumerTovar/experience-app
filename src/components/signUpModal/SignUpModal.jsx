@@ -5,11 +5,13 @@ import { useEffect, useRef } from 'react';
 import InputSelect from './InputSelect';
 import { useForm } from '../../hooks/localSignUp/useForm';
 
-export default function SignUpModal({ setSignUpModalIsOpen }) {
+export default function SignUpModal({ setSignUpModalIsOpen, setIsOpen }) {
  const refModal = useRef();
 
- const { form, errors, handleChange, handleBlur, handleSubmit } =
-  useForm(setSignUpModalIsOpen);
+ const { form, errors, handleChange, handleBlur, handleSubmit } = useForm(
+  setSignUpModalIsOpen,
+  setIsOpen
+ );
 
  useEffect(() => {
   const closeModal = (e) => {

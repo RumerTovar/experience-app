@@ -21,7 +21,10 @@ function App() {
     />
    )}
    {signUpModalIsOpen && (
-    <SignUpModal setSignUpModalIsOpen={setSignUpModalIsOpen} />
+    <SignUpModal
+     setSignUpModalIsOpen={setSignUpModalIsOpen}
+     setIsOpen={setIsOpen}
+    />
    )}
   </div>
  );

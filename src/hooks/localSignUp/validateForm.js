@@ -1,4 +1,4 @@
-export const validateForm = (form, target) => {
+export const validateForm = (form, target, error) => {
  let errors = {};
  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
  let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
@@ -30,6 +30,8 @@ export const validateForm = (form, target) => {
    errors.email = 'Email cannot be empty';
   } else if (!regexEmail.test(form.email.trim())) {
    errors.email = 'Looks like this is not an email';
+  } else if (error) {
+   errors.email = `Email ${form.email} already exists`;
   } else {
    errors.email = true;
   }
