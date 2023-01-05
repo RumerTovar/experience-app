@@ -33,7 +33,7 @@ const Header = ({ setIsOpen, profile, setProfile }) => {
       <button className={styles.buttom}>
        <img className={styles.houseImage} src={house} alt='house' />
        <span onClick={() => logOut()} className={styles.buttomText}>
-        {`${profile.given_name.charAt(0)} ${profile.family_name.charAt(0)}`}
+        {`${profile?.firstName.charAt(0)} ${profile?.lastName.charAt(0)}`}
        </span>
       </button>
      )}
