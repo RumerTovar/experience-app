@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { validateForm } from './validateForm';
+import { DgraphSignUp } from './DgraphSignUp';
 
 const initialForm = {
  firstName: '',
@@ -11,7 +12,6 @@ const initialForm = {
 };
 
 export const useForm = (setSignUpModalIsOpen, setIsOpen) => {
- console.log();
  const [form, setForm] = useState(initialForm);
  const [errors, setErrors] = useState({});
 
@@ -43,67 +43,9 @@ export const useForm = (setSignUpModalIsOpen, setIsOpen) => {
    errors.password === true &&
    errors.confirmPassword === true
   ) {
-   async function fetchGraphQL(operationsDoc, operationName, variables) {
-    const result = await fetch(
-     'https://blue-surf-790015.us-east-1.aws.cloud.dgraph.io/graphql',
-     {
-      method: 'POST',
-      headers: {
-       'Content-Type': 'application/json',
-       'X-Auth-Token':
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzL3Byb3h5IiwiZHVpZCI6IjB4ODI5ODc3MzA4IiwiZXhwIjoxNjcyMjUxOTM1LCJpc3MiOiJzL2FwaSJ9.I8lBX69vS7uqVvTUZ4J4yHvvcJXqsLCb6BvLBj4TgeU',
-      },
-      body: JSON.stringify({
-       query: operationsDoc,
-       variables: variables,
-       operationName: operationName,
-      }),
-     }
-    );
-
-    return await result.json();
-   }
-
-   const operationsDoc = `
-  mutation MyMutation($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    addAuthors(input: {firstName: $firstName, lastName: $lastName, email: $email, singInProvider: Local, simpleUser: true, collaborator: false, superUser: false, active: true, password: $password}) {
-      authors {
-        email
-        id
-      }
-    }
-  }
-`;
-
-   function executeMyMutation() {
-    return fetchGraphQL(operationsDoc, 'MyMutation', {
-     firstName: form.firstName,
-     lastName: form.lastName,
-     email: form.email,
-     password: form.password,
-    });
-   }
-
-   async function startExecuteMyMutation() {
-    const { errors: error, data } = await executeMyMutation();
-
-    if (error) {
-     // handle those errors like a pro
-
-     return setErrors(validateForm(form, 'email', error));
-    }
-
-    // do something great with this precious data
-    setSignUpModalIsOpen(false);
-    setIsOpen(true);
-    console.log(data);
-   }
-
-   startExecuteMyMutation();
+   DgraphSignUp(form, setErrors, setSignUpModalIsOpen, setIsOpen, validateForm);
   } else {
-   console.log('wrong form');
-   console.log(errors);
-   return;
+   return console.log('wrong form');
   }
  };
 

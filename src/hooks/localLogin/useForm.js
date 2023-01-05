@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { DgraphLogIn } from './DgraphLogIn';
 import { validateForm } from './validateForm';
 
 const initialForm = {
@@ -6,7 +7,7 @@ const initialForm = {
  password: '',
 };
 
-export const useForm = () => {
+export const useForm = (setProfile, setIsOpen, setLoginError) => {
  const [form, setForm] = useState(initialForm);
  const [errors, setErrors] = useState({});
 
@@ -32,13 +33,9 @@ export const useForm = () => {
   e.preventDefault();
   setErrors(validateForm(form, undefined));
   if (errors.email === true && errors.password === true) {
-   alert('submitting form');
-   console.log(form);
+   DgraphLogIn(form, setLoginError, setProfile, setIsOpen);
   } else {
-   alert('Wrong form');
-   console.log('wrong form');
-   console.log(errors);
-   return;
+   return console.log('wrong form');
   }
  };
 

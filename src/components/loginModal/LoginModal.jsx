@@ -2,13 +2,18 @@ import styles from './LoginModal.module.css';
 import lightBulb from '../../assets/images/icons/lightBulb.svg';
 import rocketIcon from '../../assets/images/icons/rocket.svg';
 import { useGooglehook } from '../../hooks/googleLogin/useGooglehook';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Input from './Input';
 import { useForm } from '../../hooks/localLogin/useForm';
 
 export default function Modal({ setIsOpen, setProfile, setSignUpModalIsOpen }) {
- const { login } = useGooglehook(setProfile, setIsOpen);
- const { form, errors, handleChange, handleBlur, handleSubmit } = useForm();
+ const [loginError, setLoginError] = useState(false);
+ const { form, errors, handleChange, handleBlur, handleSubmit } = useForm(
+  setProfile,
+  setIsOpen,
+  setLoginError
+ );
+ const { login } = useGooglehook(setProfile, setIsOpen, setLoginError);
 
  const refModal = useRef();
 
@@ -36,6 +41,7 @@ export default function Modal({ setIsOpen, setProfile, setSignUpModalIsOpen }) {
     <div className={styles.modalContent} ref={refModal}>
      <h3 className={styles.modalTitle}>Welcome back</h3>
      <p className={styles.description}>Log back into your account.</p>
+     {loginError && <p className={styles.errors}>{loginError}</p>}
      <form className={styles.formButton}>
       <Input
        label='Email'
