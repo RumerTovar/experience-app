@@ -5,7 +5,7 @@ import house from '../assets/images/icons/house.svg';
 import Hero from './Hero';
 
 const isEmpty = (obj) => {
- return Object.keys(obj).length === 0;
+    return Object.keys(obj).length === 0;
 };
 
 const Header = ({ setIsOpen, profile, setProfile }) => {
