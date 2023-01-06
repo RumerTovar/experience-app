@@ -16,7 +16,7 @@ export const validateForm = (form, target) => {
 
  const passwordValidation = () => {
   if (!form.password.trim()) {
-   errors.password = 'Password cannot be emptyy';
+   errors.password = 'Password cannot be empty';
   } else if (form.password.length < 6 || form.password.length > 12) {
    errors.password =
     'The password must have at least 6 characters and a maximum of 12 characters';
