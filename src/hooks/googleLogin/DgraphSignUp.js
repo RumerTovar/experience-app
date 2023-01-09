@@ -44,7 +44,15 @@ export const DgraphSignUp = (data, setProfile, setIsOpen, setLoginError) => {
   const { errors: error, data: registerData } = await executeMyMutation();
 
   if (error) {
-   console.log('error', error);
+   if (
+    error[0].message ===
+    `couldn't rewrite mutation addAuthors because failed to rewrite mutation payload because id ${data.email} already exists for field email inside type Authors`
+   ) {
+    return setLoginError(
+     `The email ${data.email} is already associated with another account`
+    );
+   }
+   return setLoginError('Something went wrong try again');
   }
 
   // do something great with this precious data
