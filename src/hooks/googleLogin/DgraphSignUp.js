@@ -1,3 +1,4 @@
+import { DgraphAuthentication } from './DgraphAuthentication';
 import { DgraphLogIn } from './DgraphLogIn';
 
 const endpoint = process.env.REACT_APP_GRAPHQL_ENDPOINT;
@@ -41,10 +42,17 @@ export const DgraphSignUp = (data, setProfile, setIsOpen, setLoginError) => {
  }
 
  async function startExecuteMyMutation() {
+  const { email } = data;
   const { errors: error, data: registerData } = await executeMyMutation();
 
   if (error) {
-   console.log('error', error);
+   if (
+    error[0].message ===
+    `couldn't rewrite mutation addAuthors because failed to rewrite mutation payload because id ${email} already exists for field email inside type Authors`
+   ) {
+    DgraphAuthentication(email, setProfile, setIsOpen, setLoginError);
+   }
+   return setLoginError('Something went wrong try again');
   }
 
   // do something great with this precious data
