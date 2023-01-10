@@ -35,7 +35,7 @@ export const useForm = (setProfile, setIsOpen, setLoginError) => {
   if (errors.email === true && errors.password === true) {
    DgraphLogIn(form, setLoginError, setProfile, setIsOpen);
   } else {
-   return console.log('wrong form');
+   return setLoginError('Invalid email or password');
   }
  };
 

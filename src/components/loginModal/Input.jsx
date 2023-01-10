@@ -8,20 +8,12 @@ export default function Input({
  onBlur,
  onChange,
  value,
- errors,
 }) {
- const className = () => {
-  if (errors[name] === undefined || errors[name] === true) {
-   return;
-  }
-  return styles.inputError;
- };
-
  return (
   <>
    <p className={styles.label}>{label}</p>
    <input
-    className={`${styles.input} ${className()}`}
+    className={styles.input}
     type={type}
     name={name}
     placeholder={placeholder}
@@ -30,9 +22,6 @@ export default function Input({
     onKeyUp={onBlur}
     value={value[name]}
    />
-   {errors[name] === undefined || errors[name] === true ? null : (
-    <p className={styles.errors}>{errors[name]}</p>
-   )}
   </>
  );
 }
