@@ -7,7 +7,12 @@ import Input from './Input';
 import { useForm } from '../../hooks/localLogin/useForm';
 import Image from 'next/image';
 
-export default function Modal({ setIsOpen, setProfile, setSignUpModalIsOpen }) {
+export default function Modal({
+ setIsOpen,
+ setProfile,
+ setSignUpModalIsOpen,
+ setPasswordForgottenModal,
+}) {
  const [loginError, setLoginError] = useState(false);
  const { form, errors, handleChange, handleBlur, handleSubmit } = useForm(
   setProfile,
@@ -18,9 +23,14 @@ export default function Modal({ setIsOpen, setProfile, setSignUpModalIsOpen }) {
 
  const refModal = useRef();
 
- const handleclickSignUp = () => {
+ const handleClickSignUp = () => {
   setIsOpen(false);
   setSignUpModalIsOpen(true);
+ };
+
+ const handleClickPasswordForgotten = () => {
+  setIsOpen(false);
+  setPasswordForgottenModal(true);
  };
 
  useEffect(() => {
@@ -64,7 +74,9 @@ export default function Modal({ setIsOpen, setProfile, setSignUpModalIsOpen }) {
        value={form}
        errors={errors}
       />
-      <p className={styles.recoverPassword}>Forgot your password?</p>
+      <div className={styles.recoverPassword}>
+       <p onClick={handleClickPasswordForgotten}>Forgot your password?</p>
+      </div>
       <button
        type='submit'
        className={styles.loginButton}
@@ -81,7 +93,7 @@ export default function Modal({ setIsOpen, setProfile, setSignUpModalIsOpen }) {
      </button>
      <hr className={styles.spaceBar} />
      <p className={styles.description}>Not part of our community yet?</p>
-     <button className={styles.signUpButton} onClick={handleclickSignUp}>
+     <button className={styles.signUpButton} onClick={handleClickSignUp}>
       <Image src={lightBulb} alt='log in icon' /> <span>sign up</span>
      </button>
     </div>

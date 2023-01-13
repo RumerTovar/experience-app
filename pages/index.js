@@ -1,14 +1,26 @@
 import Head from 'next/head';
-import { useState } from 'react';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import LoginModal from '../components/loginModal/LoginModal';
+import PasswordForgotten from '../components/passwordForgotten/PasswordForgotten';
 import SignUpModal from '../components/signUpModal/SignUpModal';
 
 export default function Home() {
  const [profile, setProfile] = useState({});
  const [isOpen, setIsOpen] = useState(false);
  const [signUpModalIsOpen, setSignUpModalIsOpen] = useState(false);
+ const [passwordForgottenModal, setPasswordForgottenModal] = useState(false);
+ const router = useRouter();
+
+ useEffect(() => {
+  const { login } = router.query;
+
+  if (login) {
+   setIsOpen(true);
+  }
+ }, [router.query]);
 
  return (
   <>
@@ -26,6 +38,7 @@ export default function Home() {
       setIsOpen={setIsOpen}
       setProfile={setProfile}
       setSignUpModalIsOpen={setSignUpModalIsOpen}
+      setPasswordForgottenModal={setPasswordForgottenModal}
      />
     )}
     {signUpModalIsOpen && (
@@ -34,7 +47,16 @@ export default function Home() {
       setIsOpen={setIsOpen}
      />
     )}
+
+    {passwordForgottenModal && (
+     <PasswordForgotten setPasswordForgottenModal={setPasswordForgottenModal} />
+    )}
    </div>
   </>
  );
 }
+
+Home.getInitialProps = async (context) => {
+ // context.query contiene las propiedades de la URL
+ return { login: context.query.login };
+};

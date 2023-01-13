@@ -49,6 +49,7 @@
 }
 
 .loginButton {
+ cursor: pointer;
  width: 100%;
  display: flex;
  flex-direction: row;
@@ -80,6 +81,7 @@
 }
 
 .signUpButton {
+ cursor: pointer;
  width: 100%;
  display: flex;
  flex-direction: row;
@@ -114,7 +116,6 @@
  width: 100%;
  border: 1px solid #ffbfa3;
  border-bottom: 0px;
- margin: 16px 0px;
 }
 
 .formButton {
@@ -126,9 +127,10 @@
 }
 
 .recoverPassword {
+ display: flex;
+ justify-content: flex-end;
  padding-top: 4px;
  padding-bottom: 16px;
- text-align: end;
  font-family: 'Syne';
  font-style: normal;
  font-weight: 400;
@@ -136,6 +138,11 @@
  line-height: 20px;
  letter-spacing: 0.02em;
  color: #802376;
+}
+
+.recoverPassword p {
+ width: fit-content;
+ cursor: pointer;
 }
 
 .errors {
