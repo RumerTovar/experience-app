@@ -4,14 +4,17 @@ import experienceLogo from '../assets/images/experience.svg';
 import house from '../assets/images/icons/house.svg';
 import Hero from './Hero';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 
 const isEmpty = (obj) => {
  return Object.keys(obj).length === 0;
 };
 
-const Header = ({ setIsOpen, profile, setProfile }) => {
+export default function Header({ setIsOpen, profile, setProfile }) {
  const [logoutVisible, setLogoutVisible] = useState(false);
+
+ const router = useRouter();
 
  const logOut = () => {
   setProfile({});
@@ -19,6 +22,10 @@ const Header = ({ setIsOpen, profile, setProfile }) => {
  };
 
  const refLogout = useRef();
+
+ const handleClickHome = () => {
+  router.push('/');
+ };
 
  useEffect(() => {
   const closeLogout = (e) => {
@@ -42,6 +49,7 @@ const Header = ({ setIsOpen, profile, setProfile }) => {
        className={styles.imageContainer}
        src={experienceLogo}
        alt='logo'
+       onClick={handleClickHome}
       />
       <span className={styles.navTitle}>Catalog</span>
      </div>
@@ -80,6 +88,4 @@ const Header = ({ setIsOpen, profile, setProfile }) => {
    </header>
   </div>
  );
-};
-
-export { Header };
+}

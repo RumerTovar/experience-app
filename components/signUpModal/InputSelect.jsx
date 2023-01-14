@@ -1,7 +1,7 @@
 import styles from './Input.module.css';
 import { countries } from '../../data/countries';
 
-export default function InputSelect({ label, name, onChange, value }) {
+export default function InputSelect({ label, name, onChange }) {
  return (
   <div>
    <p className={`${styles.label} ${styles[name]}`}>{label}</p>
