@@ -7,6 +7,7 @@ const emailPassword = process.env.NEXT_PUBLIC_EMAIL_PASSWORD;
 const jwtSecret = process.env.NEXT_PUBLIC_JWT_SECRET;
 const localHomePage = process.env.NEXT_PUBLIC_LOCAL_HOMEPAGE;
 
+
 export default async function verify(req, res) {
  const { email } = req.body;
 
