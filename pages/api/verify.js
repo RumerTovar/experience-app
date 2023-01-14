@@ -19,6 +19,8 @@ export default async function verify(req, res) {
   { expiresIn: '24h' }
  );
 
+ await DgraphRegisterToken(email, emailToken);
+
  const htmlMessage = `
  <!DOCTYPE html>
  <html>
@@ -59,7 +61,6 @@ export default async function verify(req, res) {
    console.error(err);
   } else {
    console.log('email sent successfully!');
-   DgraphRegisterToken(email, emailToken);
    return res.status(200).json({
     response: 'email sent successfully',
    });
