@@ -11,6 +11,7 @@ const isEmpty = (obj) => {
  return Object.keys(obj).length === 0;
 };
 
+
 export default function Header({ setIsOpen, profile, setProfile }) {
  const [logoutVisible, setLogoutVisible] = useState(false);
 
