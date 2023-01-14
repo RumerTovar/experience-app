@@ -1,16 +1,3 @@
-"""
-Each experience has a unique ID.
-Experiences are part of experience and program catalogs.
-In the Experience Catalog UI, We want to filter by:
-- Grade
-- Cognitive Level
-- Experience Type
-And we want to search:
--. Experience Authors (email, first name, last name)
--. Experience Titles
--. Experience Subject
--. Experience Collaborator
-"""
 type Experience {
  id: ID!
  dateCreated: DateTime @search
@@ -27,9 +14,9 @@ type Experience {
  outcomes: String
  productDeliverables: String
  timeLine: [TimeLine]
+ assessments: [Assessment]
  mainStudentInquireis: String
  mainQuestions: String
- active: Boolean!
 }
 
 enum SubjectDomain {
@@ -63,18 +50,6 @@ type SubjectTuple {
  instance: SubjectInstance!
 }
 
-type Authors implements ContactInfo {
- id: ID!
- ContactInfo: [ContactInfo!]!
- active: Boolean!
-}
-
-type Collaborators implements ContactInfo {
- id: ID!
- ContactInfo: [ContactInfo!]!
- active: Boolean!
-}
-
 """
 -. All signed-up users are Simple Users by default.
 -. A Simple user can create, read, update, and
@@ -95,8 +70,7 @@ delete their OWN experiences.
     2-. Using Google
     3-. Using Apple
 """
-interface ContactInfo @secret(field: "password") {
- id: ID!
+type Authors @secret(field: "pwd") {
  firstName: String!
  lastName: String!
  email: String! @id
@@ -104,6 +78,18 @@ interface ContactInfo @secret(field: "password") {
  simpleUser: Boolean!
  collaborator: Boolean!
  superUser: Boolean!
+ active: Boolean!
+}
+
+type Collaborators @secret(field: "pwd") {
+ firstName: String!
+ lastName: String!
+ email: String! @id
+ singInProvider: SingInProvider!
+ simpleUser: Boolean!
+ collaborator: Boolean!
+ superUser: Boolean!
+ active: Boolean!
 }
 
 enum SingInProvider {
@@ -145,4 +131,11 @@ enum GradeLevel {
  Tenth
  Eleventh
  Twelveth
+}
+
+type Assessment {
+ id: ID!
+ title: String!
+ description: String!
+ date: DateTime!
 }
