@@ -48,5 +48,5 @@ export const DgraphRegisterToken = (email, token) => {
   console.log(data);
  }
 
- startExecuteMyMutation();
+ return startExecuteMyMutation();
 };
