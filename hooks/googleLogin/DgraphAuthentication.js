@@ -1,6 +1,6 @@
 export const DgraphAuthentication = (
  email,
- setProfile,
+ setUser,
  setIsOpen,
  setLoginError
 ) => {
@@ -49,10 +49,8 @@ export const DgraphAuthentication = (
    return setLoginError('Something went wrong try again');
   }
 
-  // do something great with this precious data
-  setProfile(getAuthors);
+  setUser(getAuthors);
   setIsOpen(false);
-  // console.log(data);
  }
 
  startFetchMyQuery();

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import UserContext from '../../context/UserContext';
 import { DgraphLogIn } from './DgraphLogIn';
 import { validateForm } from './validateForm';
 
@@ -7,9 +8,11 @@ const initialForm = {
  password: '',
 };
 
-export const useForm = (setProfile, setIsOpen, setLoginError) => {
+export const useForm = (setIsOpen, setLoginError) => {
  const [form, setForm] = useState(initialForm);
  const [errors, setErrors] = useState({});
+
+ const { setUser } = useContext(UserContext);
 
  const handleChange = (e) => {
   const { name, value } = e.target;
@@ -33,7 +36,7 @@ export const useForm = (setProfile, setIsOpen, setLoginError) => {
   e.preventDefault();
   setErrors(validateForm(form, undefined));
   if (errors.email === true && errors.password === true) {
-   DgraphLogIn(form, setLoginError, setProfile, setIsOpen);
+   DgraphLogIn(form, setLoginError, setUser, setIsOpen);
   } else {
    return setLoginError('Invalid email or password');
   }

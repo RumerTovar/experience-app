@@ -1,6 +1,6 @@
 const endpoint = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 
-export const DgraphLogIn = (form, setLoginError, setProfile, setIsOpen) => {
+export const DgraphLogIn = (form, setLoginError, setUser, setIsOpen) => {
  async function fetchGraphQL(operationsDoc, operationName, variables) {
   const result = await fetch(endpoint, {
    method: 'POST',
@@ -39,16 +39,19 @@ export const DgraphLogIn = (form, setLoginError, setProfile, setIsOpen) => {
   const { checkAuthorsPassword } = data;
 
   if (error) {
-   // handle those errors like a pro
-   return console.log(error);
+   return setLoginError('Something went wrong, try again');
   }
 
   if (!checkAuthorsPassword) {
    return setLoginError('Invalid email or password');
   }
 
-  // do something great with this precious data
-  setProfile(checkAuthorsPassword);
+  console.log('here', checkAuthorsPassword);
+  window.localStorage.setItem(
+   'loggedAppUser',
+   JSON.stringify(checkAuthorsPassword)
+  );
+  setUser(checkAuthorsPassword);
   setIsOpen(false);
  }
 
