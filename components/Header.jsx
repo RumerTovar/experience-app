@@ -21,6 +21,7 @@ export default function Header({ setIsOpen }) {
 
  const logOut = () => {
   setUser({});
+  window.localStorage.removeItem('loggedAppUser');
   setLogoutVisible(false);
  };
 

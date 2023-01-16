@@ -1,3 +1,5 @@
+const endpoint = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
+
 export const DgraphAuthentication = (
  email,
  setUser,
@@ -5,20 +7,17 @@ export const DgraphAuthentication = (
  setLoginError
 ) => {
  async function fetchGraphQL(operationsDoc, operationName, variables) {
-  const result = await fetch(
-   'https://blue-surf-790015.us-east-1.aws.cloud.dgraph.io/graphql',
-   {
-    method: 'POST',
-    headers: {
-     'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-     query: operationsDoc,
-     variables: variables,
-     operationName: operationName,
-    }),
-   }
-  );
+  const result = await fetch(endpoint, {
+   method: 'POST',
+   headers: {
+    'Content-Type': 'application/json',
+   },
+   body: JSON.stringify({
+    query: operationsDoc,
+    variables: variables,
+    operationName: operationName,
+   }),
+  });
 
   return await result.json();
  }
