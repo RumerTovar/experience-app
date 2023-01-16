@@ -8,7 +8,6 @@ import PasswordForgotten from '../components/passwordForgotten/PasswordForgotten
 import SignUpModal from '../components/signUpModal/SignUpModal';
 
 export default function Home() {
- const [profile, setProfile] = useState({});
  const [isOpen, setIsOpen] = useState(false);
  const [signUpModalIsOpen, setSignUpModalIsOpen] = useState(false);
  const [passwordForgottenModal, setPasswordForgottenModal] = useState(false);
@@ -31,12 +30,11 @@ export default function Home() {
     <link rel='icon' href='/favicon.ico' />
    </Head>
    <div>
-    <Header setIsOpen={setIsOpen} profile={profile} setProfile={setProfile} />
+    <Header setIsOpen={setIsOpen} />
     <Footer author={'Luciano Polo'} />
     {isOpen && (
      <LoginModal
       setIsOpen={setIsOpen}
-      setProfile={setProfile}
       setSignUpModalIsOpen={setSignUpModalIsOpen}
       setPasswordForgottenModal={setPasswordForgottenModal}
      />

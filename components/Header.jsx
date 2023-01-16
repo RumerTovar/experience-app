@@ -5,20 +5,23 @@ import house from '../assets/images/icons/house.svg';
 import Hero from './Hero';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import UserContext from '../context/UserContext';
 
 const isEmpty = (obj) => {
  return Object.keys(obj).length === 0;
 };
 
-
-export default function Header({ setIsOpen, profile, setProfile }) {
+export default function Header({ setIsOpen }) {
  const [logoutVisible, setLogoutVisible] = useState(false);
+
+ const { setUser, user } = useContext(UserContext);
 
  const router = useRouter();
 
  const logOut = () => {
-  setProfile({});
+  setUser({});
+  window.localStorage.removeItem('loggedAppUser');
   setLogoutVisible(false);
  };
 
@@ -54,7 +57,7 @@ export default function Header({ setIsOpen, profile, setProfile }) {
       />
       <span className={styles.navTitle}>Catalog</span>
      </div>
-     {isEmpty(profile) ? (
+     {isEmpty(user) ? (
       <button className={styles.buttom}>
        <Image className={styles.houseImage} src={house} alt='house' />
        <span onClick={() => setIsOpen(true)} className={styles.buttomText}>
@@ -66,7 +69,7 @@ export default function Header({ setIsOpen, profile, setProfile }) {
        <button className={styles.buttom} onClick={() => setLogoutVisible(true)}>
         <Image className={styles.houseImage} src={house} alt='house' />
         <span className={styles.buttomText}>
-         {`${profile?.firstName.charAt(0)} ${profile?.lastName.charAt(0)}`}
+         {`${user?.firstName.charAt(0)} ${user?.lastName.charAt(0)}`}
         </span>
        </button>
        {logoutVisible && (

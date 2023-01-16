@@ -1,6 +1,6 @@
 const endpoint = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 
-export const DgraphLogIn = (data, setProfile, setIsOpen, setLoginError) => {
+export const DgraphLogIn = (data, setUser, setIsOpen, setLoginError) => {
  async function fetchGraphQL(operationsDoc, operationName, variables) {
   const result = await fetch(endpoint, {
    method: 'POST',
@@ -49,7 +49,7 @@ export const DgraphLogIn = (data, setProfile, setIsOpen, setLoginError) => {
    return setLoginError('Something went wrong try again');
   }
 
-  setProfile(checkAuthorsPassword);
+  setUser(checkAuthorsPassword);
   setIsOpen(false);
  }
 
