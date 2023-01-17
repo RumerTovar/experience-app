@@ -49,6 +49,10 @@ export const DgraphLogIn = (data, setUser, setIsOpen, setLoginError) => {
    return setLoginError('Something went wrong try again');
   }
 
+  window.localStorage.setItem(
+   'loggedAppUser',
+   JSON.stringify(checkAuthorsPassword)
+  );
   setUser(checkAuthorsPassword);
   setIsOpen(false);
  }

@@ -47,7 +47,11 @@ export const DgraphAuthentication = (
    console.error(errors);
    return setLoginError('Something went wrong try again');
   }
-
+  
+  window.localStorage.setItem(
+    'loggedAppUser',
+    JSON.stringify(getAuthors)
+   );
   setUser(getAuthors);
   setIsOpen(false);
  }
