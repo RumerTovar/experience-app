@@ -29,21 +29,40 @@ export const DgraphSearchEmail = async (form, setError, setSuccessMessage) => {
      }
    `;
 
+ const checkProvider = `
+   query checkProvider($email:String!) {
+     getAuthors(email: $email) {
+       singInProvider
+     }
+   }
+ `;
+
+ function fetchProvider() {
+  return fetchGraphQL(checkProvider, 'checkProvider', { email });
+ }
+
  function fetchMyQuery() {
-  return fetchGraphQL(operationsDoc, 'MyQuery', { email: email });
+  return fetchGraphQL(operationsDoc, 'MyQuery', { email });
  }
 
  async function startFetchMyQuery() {
+  const { errors: providerErrors, data: provider } = await fetchProvider();
   const { errors, data } = await fetchMyQuery();
+  const { singInProvider } = provider.getAuthors;
   const { queryAuthors } = data;
 
   if (errors) {
    console.error(errors);
+   console.error(providerErrors);
   }
 
   if (queryAuthors.length === 0) {
    return setError('Email not found');
   } else {
+   if (singInProvider !== 'local') {
+    return setError('This account was created using a Google/Apple provider.');
+   }
+
    sendRecoveryEmail(email);
    setSuccessMessage(true);
    return setError(false);

@@ -46,7 +46,6 @@ export const DgraphSignUp = (
   const { errors: error, data } = await executeMyMutation();
 
   if (error) {
-   // handle those errors like a pro
    return setErrors(validateForm(form, 'email', error));
   }
 
