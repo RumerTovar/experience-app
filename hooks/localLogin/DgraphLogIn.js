@@ -27,6 +27,18 @@ export const DgraphLogIn = (form, setLoginError, setUser, setIsOpen) => {
   }
 `;
 
+ const checkProvider = `
+   query checkProvider($email:String!) {
+     getAuthors(email: $email) {
+       singInProvider
+     }
+   }
+ `;
+
+ function fetchProvider() {
+  return fetchGraphQL(checkProvider, 'checkProvider', { email: form.email });
+ }
+
  function fetchMyQuery() {
   return fetchGraphQL(operationsDoc, 'MyQuery', {
    email: form.email,
@@ -35,11 +47,21 @@ export const DgraphLogIn = (form, setLoginError, setUser, setIsOpen) => {
  }
 
  async function startFetchMyQuery() {
+  const { errors: providerErrors, data: provider } = await fetchProvider();
   const { errors: error, data } = await fetchMyQuery();
+  const { singInProvider } = provider.getAuthors;
   const { checkAuthorsPassword } = data;
 
   if (error) {
+   console.error(error);
+   console.error(providerErrors);
    return setLoginError('Something went wrong, try again');
+  }
+
+  if (singInProvider !== 'local') {
+   return setLoginError(
+    'This account was created using a Google/Apple provider.'
+   );
   }
 
   if (!checkAuthorsPassword) {
