@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import LoginModal from '../components/loginModal/LoginModal';
 import PasswordForgotten from '../components/passwordForgotten/PasswordForgotten';
 import SignUpModal from '../components/signUpModal/SignUpModal';
+import styles from './index.module.css';
 
 export default function Home() {
  const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,7 @@ export default function Home() {
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel='icon' href='/favicon.ico' />
    </Head>
-   <div>
+   <div className={styles.container}>
     <Header setIsOpen={setIsOpen} />
     <Footer author={'Luciano Polo'} />
     {isOpen && (
