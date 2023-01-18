@@ -39,7 +39,6 @@ export const DgraphAuthentication = (
 
  async function startFetchMyQuery() {
   const { errors, data } = await fetchMyQuery();
-
   const { getAuthors } = data;
 
   if (errors) {
@@ -47,11 +46,8 @@ export const DgraphAuthentication = (
    console.error(errors);
    return setLoginError('Something went wrong try again');
   }
-  
-  window.localStorage.setItem(
-    'loggedAppUser',
-    JSON.stringify(getAuthors)
-   );
+
+  window.localStorage.setItem('loggedAppUser', JSON.stringify(getAuthors));
   setUser(getAuthors);
   setIsOpen(false);
  }
