@@ -60,7 +60,7 @@ export const DgraphLogIn = (form, setLoginError, setUser, setIsOpen) => {
 
   if (singInProvider !== 'Local') {
    return setLoginError(
-    'This account was created using a Google/Apple provider.'
+    `This account was created using a ${singInProvider} provider.`
    );
   }
 
