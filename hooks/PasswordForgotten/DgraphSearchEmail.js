@@ -59,8 +59,10 @@ export const DgraphSearchEmail = async (form, setError, setSuccessMessage) => {
   if (queryAuthors.length === 0) {
    return setError('Email not found');
   } else {
-   if (singInProvider !== 'local') {
-    return setError('This account was created using a Google/Apple provider.');
+   if (singInProvider !== 'Local') {
+    return setError(
+     `This account was created using a ${singInProvider} provider.`
+    );
    }
 
    sendRecoveryEmail(email);
