@@ -46,19 +46,24 @@ export const DgraphSearchEmail = async (form, setError, setSuccessMessage) => {
  }
 
  async function startFetchMyQuery() {
-  const { errors: providerErrors, data: provider } = await fetchProvider();
+  //
   const { errors, data } = await fetchMyQuery();
-  const { singInProvider } = provider.getAuthors;
   const { queryAuthors } = data;
 
   if (errors) {
    console.error(errors);
-   console.error(providerErrors);
   }
 
   if (queryAuthors.length === 0) {
    return setError('Email not found');
   } else {
+   const { errors: providerErrors, data: provider } = await fetchProvider();
+   const { singInProvider } = provider.getAuthors;
+   if (errors) {
+    console.error(providerErrors);
+    return setError('Something went wrong try again');
+   }
+
    if (singInProvider !== 'Local') {
     return setError(
      `This account was created using a ${singInProvider} provider.`
