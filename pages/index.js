@@ -14,10 +14,17 @@ export default function Home() {
  const [passwordForgottenModal, setPasswordForgottenModal] = useState(false);
  const router = useRouter();
 
+ const deleteLoginParameter = () => {
+  const currentUrl = new URL(window.location.href);
+  currentUrl.searchParams.delete('login');
+  history.pushState({}, '', currentUrl.href);
+ };
+
  useEffect(() => {
   const { login } = router.query;
 
   if (login) {
+   deleteLoginParameter();
    setIsOpen(true);
   }
  }, [router.query]);
