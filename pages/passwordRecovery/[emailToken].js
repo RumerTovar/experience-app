@@ -20,22 +20,39 @@ export default function ChangePassword({ userEmail, isValidToken }) {
 
 ChangePassword.getInitialProps = async ({ query }) => {
  try {
-  const req = await axios.post(`${url}/api/verifyToken`, {
+  /* aqui vamos a recibir la url corta
+la vamos a enviar a la base de datos 
+para que nos devuelva la url real
+y seguir con este flujo que ya esta establecido 
+-si es falso que devuelva 404
+- si es true que siga este flujo
+*/
+  const sendShortURL = await axios.post(`${url}/api/shortURL`, {
    token: query.emailToken,
   });
-  const { res, email } = req.data;
-  if (res === 'ok') {
-   return {
-    isValidToken: true,
-    userEmail: email,
-    emailToken: query.emailToken,
-   };
-  } else {
+  const { fullURL } = sendShortURL.data;
+
+  if (!fullURL) {
    return {
     isValidToken: false,
-    userEmail: email,
-    emailToken: query.emailToken,
+    userEmail: null,
    };
+  } else {
+   const req = await axios.post(`${url}/api/verifyToken`, {
+    token: fullURL,
+   });
+   const { res, email } = req.data;
+   if (res === 'ok') {
+    return {
+     isValidToken: true,
+     userEmail: email,
+    };
+   } else {
+    return {
+     isValidToken: false,
+     userEmail: email,
+    };
+   }
   }
  } catch (error) {
   return console.error(error);

@@ -1,6 +1,8 @@
 import nodemailer from 'nodemailer';
+import { nanoid } from 'nanoid';
 import jwt from 'jsonwebtoken';
 import { DgraphRegisterToken } from '../../utils/DgraphRegisterToken';
+import { DgraphRegisterURL } from '../../utils/DgraphRegisterURL';
 
 const appEmail = process.env.NEXT_PUBLIC_EMAIL;
 const emailPassword = process.env.NEXT_PUBLIC_EMAIL_PASSWORD;
@@ -18,7 +20,9 @@ export default async function verify(req, res) {
   { expiresIn: '24h' }
  );
 
+ const shortURL = nanoid(10);
  await DgraphRegisterToken(email, emailToken);
+ await DgraphRegisterURL(emailToken, shortURL);
 
  const htmlMessage = `
  <!DOCTYPE html>
@@ -87,7 +91,7 @@ export default async function verify(req, res) {
         <td align="center" style="padding: 0">
          <a
           style="text-decoration: none"
-          href="${localHomePage}/passwordRecovery/${emailToken}">
+          href="${localHomePage}/passwordRecovery/${shortURL}">
           <button
            style="
             font-family: 'Syne', sans-serif;
@@ -122,8 +126,8 @@ export default async function verify(req, res) {
            color: #8b4e86;
            max-width: 300px;
           "
-          href="${localHomePage}/passwordRecovery/${emailToken}"
-          >https://fakelinktoshowhowitshouldlook.com</a
+          href="${localHomePage}/passwordRecovery/${shortURL}"
+          >${localHomePage}/passwordRecovery/${shortURL}</a
          >
         </td>
        </tr>
@@ -208,7 +212,6 @@ export default async function verify(req, res) {
   if (err) {
    console.error(err);
   } else {
-   console.log('email sent successfully!');
    return res.status(200).json({
     response: 'email sent successfully',
    });

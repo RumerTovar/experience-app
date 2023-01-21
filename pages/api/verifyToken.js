@@ -27,6 +27,6 @@ export default async function verify(req, res) {
    });
   }
  } catch (err) {
-  res.status(401).json({ error: 'Invalid token' });
+  res.status(200).json({ error: 'Invalid token' });
  }
 }
