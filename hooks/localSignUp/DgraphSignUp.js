@@ -49,7 +49,6 @@ export const DgraphSignUp = (
    return setErrors(validateForm(form, 'email', error));
   }
 
-  // do something great with this precious data
   setSignUpModalIsOpen(false);
   setIsOpen(true);
   console.log(data);

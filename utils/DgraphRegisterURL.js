@@ -1,6 +1,6 @@
 const endpoint = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 
-export const DgraphRegisterToken = (email, token) => {
+export const DgraphRegisterURL = (fullURL, shortURL) => {
  async function fetchGraphQL(operationsDoc, operationName, variables) {
   const result = await fetch(endpoint, {
    method: 'POST',
@@ -18,19 +18,17 @@ export const DgraphRegisterToken = (email, token) => {
  }
 
  const operationsDoc = `
-  mutation MyMutation($email: String!, $token: String!) {
-    updateAuthors(input: {filter: {email: {eq: $email}}, set: {token: $token}}) {
-      authors {
-        email
-      }
+  mutation MyMutation($fullURL: String!, $shortURL: String!) {
+    addURL(input: {fullURL: $fullURL, shortURL: $shortURL}) {
+      numUids
     }
   }
 `;
 
  function executeMyMutation() {
   return fetchGraphQL(operationsDoc, 'MyMutation', {
-   email,
-   token,
+   fullURL: fullURL,
+   shortURL: shortURL,
   });
  }
 
@@ -38,7 +36,7 @@ export const DgraphRegisterToken = (email, token) => {
   const { errors } = await executeMyMutation();
 
   if (errors) {
-   console.error('error', errors);
+   console.error(errors);
   }
  }
 

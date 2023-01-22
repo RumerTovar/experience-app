@@ -19,6 +19,10 @@ export default function NewPasswordModal({ userEmail, error }) {
   router.push('/?login=true');
  };
 
+ const handleClick = () => {
+  router.push('/');
+ };
+
  return (
   <>
    {error ? (
@@ -29,7 +33,7 @@ export default function NewPasswordModal({ userEmail, error }) {
       <button
        type='submit'
        className={styles.loginButton}
-       onClick={handleLogin}>
+       onClick={handleClick}>
        <Image src={house} alt='log in icon' width={12} height={12} />
        <span>Home</span>
       </button>
