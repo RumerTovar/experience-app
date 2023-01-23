@@ -25,8 +25,7 @@ export default async function verify(req, res) {
  await DgraphRegisterToken(email, emailToken);
  await DgraphRegisterURL(emailToken, shortURL);
 
- const htmlMessage = `
- <!DOCTYPE html>
+ const htmlMessage = ` <!DOCTYPE html>
  <html
   lang="en"
   xmlns="https://www.w3.org/1999/xhtml"
@@ -63,11 +62,10 @@ export default async function verify(req, res) {
        style="
         width: 602px;
         border-collapse: collapse;
-        border: 1px solid #cccccc;
         border-spacing: 0; ;
        ">
        <tr>
-        <td align="center" style="padding: 40px 0 30px 0">
+        <td align="center" style="padding: 20px 0 30px 0">
          <img
           src="cid:logo"
           alt=""
@@ -77,12 +75,12 @@ export default async function verify(req, res) {
        </tr>
        <tr>
         <td align="center" style="padding: 0">
-         <h1 style="color: #840a73">Forgotten password?</h1>
+         <h1 style="font-family: 'Suez One', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;color: #840a73">Forgotten password?</h1>
         </td>
        </tr>
        <tr>
         <td align="center" style="padding: 0">
-         <p>
+         <p style="font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif">
           You recently requested to rest the password for your account. <br />
           Please click the link below or copy and paste the URL in your browser.
          </p>
@@ -95,7 +93,7 @@ export default async function verify(req, res) {
           href="${localHomePage}/passwordRecovery/${shortURL}">
           <button
            style="
-            font-family: 'Syne', sans-serif;
+            font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
             margin-top: 1rem;
             display: flex;
             flex-direction: row;
@@ -111,18 +109,17 @@ export default async function verify(req, res) {
             font-weight: 700;
             cursor: pointer;
            ">
-           <img src="cid:key" alt="Italian Trulli" width="10px" height="10px" />
-           <span style="margin-left: 5px">RESET PASSWORD</span>
+           <span style="margin-left: 5px; color: black">RESET PASSWORD</span>
           </button>
          </a>
          <br />
         </td>
        </tr>
        <tr>
-        <td align="center" style="padding: 0; width: 300px;">
+        <td align="center" style="font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; padding: 0; width: 300px;">
          <a
           style="
-           font-family: 'Syne', sans-serif;
+           font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
            margin-top: 1rem;
            color: #8b4e86;
            max-width: 300px;
@@ -134,17 +131,19 @@ export default async function verify(req, res) {
        </tr>
        <tr>
         <td align="center" style="padding: 0">
-         <p style="font-family: 'Syne', sans-serif">
+         <p style="font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif">
           If you did not request this, just ignore this email and your password
           will not be changed.
          </p>
+         <br>
+         <br>
         </td>
        </tr>
        <tr>
         <td align="center" style="padding: 0">
          <span
           align="center"
-          style="font-family: 'Syne', sans-serif; margin-top: 2rem">
+          style="font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; margin-top: 2rem">
           if you are still having troubles, you can reach out to us at
          </span>
         </td>
@@ -152,7 +151,7 @@ export default async function verify(req, res) {
        <tr>
         <td align="center" style="padding: 0">
          <a
-          style="font-family: 'Syne', sans-serif; color: black;"
+          style="font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; color: black;"
           href="mailto:luciano.polo@fakemail.com"
           >luciano.polo@fakemail.com</a
          >
@@ -176,8 +175,7 @@ export default async function verify(req, res) {
     }
    </style>
   </head>
- </html>
- `;
+ </html>`;
 
  const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -191,7 +189,6 @@ export default async function verify(req, res) {
  });
 
  const logoPath = path.join(process.cwd(), 'public', 'logo.png');
- const logoKey = path.join(process.cwd(), 'public', 'key.png');
 
  const mailOptions = {
   from: appEmail,
@@ -203,11 +200,6 @@ export default async function verify(req, res) {
     filename: 'logo.png',
     path: logoPath,
     cid: 'logo',
-   },
-   {
-    filename: 'key.png',
-    path: logoKey,
-    cid: 'key',
    },
   ],
  };
