@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import jwt from 'jsonwebtoken';
 import { DgraphRegisterToken } from '../../utils/DgraphRegisterToken';
 import { DgraphRegisterURL } from '../../utils/DgraphRegisterURL';
+import path from 'path';
 
 const appEmail = process.env.NEXT_PUBLIC_EMAIL;
 const emailPassword = process.env.NEXT_PUBLIC_EMAIL_PASSWORD;
@@ -189,6 +190,9 @@ export default async function verify(req, res) {
   },
  });
 
+ const logoPath = path.join(process.cwd(), 'public', 'logo.png');
+ const logoKey = path.join(process.cwd(), 'public', 'key.png');
+
  const mailOptions = {
   from: appEmail,
   to: email,
@@ -197,12 +201,12 @@ export default async function verify(req, res) {
   attachments: [
    {
     filename: 'logo.png',
-    path: 'public/logo.png',
+    path: logoPath,
     cid: 'logo',
    },
    {
     filename: 'key.png',
-    path: 'public/key.png',
+    path: logoKey,
     cid: 'key',
    },
   ],
