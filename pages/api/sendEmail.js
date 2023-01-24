@@ -89,28 +89,26 @@ export default async function verify(req, res) {
        <tr>
         <td align="center" style="padding: 0">
          <a
-          style="text-decoration: none"
+          style="text-decoration: none;
+                font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                display: flex;
+                padding: 6px 8px;
+                background: #f9eef8;
+                border: 1px solid #f9eef8;
+                border-radius: 12px;
+                font-weight: 700;
+                max-width: 200px;
+                margin: 16px 0;"
           href="${localHomePage}/passwordRecovery/${shortURL}">
-          <button
-           style="
-            font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-            margin-top: 1rem;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            margin-top: 16px;
-            padding: 6px 8px;
-            gap: 4px;
-            background: #f9eef8;
-            border: 1px solid #f9eef8;
-            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-           ">
+          <p style="display: flex; margin: 0 auto;">
+           <span><img
+            src="cid:key"
+            alt="RP"
+            width="15"
+            height="15"
+            style="display: block" /></span>
            <span style="margin-left: 5px; color: black">RESET PASSWORD</span>
-          </button>
+          </p>
          </a>
          <br />
         </td>
@@ -188,7 +186,10 @@ export default async function verify(req, res) {
   },
  });
 
- const logoPath = path.join(process.cwd(), 'public', 'logo.png');
+ const imagesPath = {
+  logo: path.join(process.cwd(), 'public', 'logo.png'),
+  key: path.join(process.cwd(), 'public', 'key.png')
+ }
 
  const mailOptions = {
   from: appEmail,
@@ -198,8 +199,13 @@ export default async function verify(req, res) {
   attachments: [
    {
     filename: 'logo.png',
-    path: logoPath,
+    path: imagesPath.logo,
     cid: 'logo',
+   },
+   {
+    filename: 'key.png',
+    path: imagesPath.key,
+    cid: 'key',
    },
   ],
  };

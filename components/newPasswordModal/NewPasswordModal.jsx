@@ -64,7 +64,7 @@ export default function NewPasswordModal({ userEmail, error }) {
           label='Password'
           type='password'
           name='password'
-          placeholder='password'
+          placeholder='Password'
           onBlur={handleBlur}
           onChange={handleChange}
           value={form}
@@ -74,7 +74,7 @@ export default function NewPasswordModal({ userEmail, error }) {
           label='Confirm password'
           type='password'
           name='confirmPassword'
-          placeholder='password'
+          placeholder='Confirm Password'
           onBlur={handleBlur}
           onChange={handleChange}
           value={form}
