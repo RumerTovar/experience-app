@@ -16,7 +16,6 @@ export default function Header({ setIsOpen }) {
  const router = useRouter();
 
  const logOut = () => {
-  router.push('/');
   setUser({});
   window.localStorage.removeItem('loggedAppUser');
   return setLogoutVisible(false);
@@ -27,7 +26,6 @@ export default function Header({ setIsOpen }) {
  const handleClickHome = () => {
   router.push('/');
  };
-
  useEffect(() => {
   const closeLogout = (e) => {
    if (refLogout.current && !refLogout.current.contains(e.target)) {

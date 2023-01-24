@@ -16,12 +16,11 @@ export default function Home() {
  const { user, path } = useContext(UserContext);
 
  useEffect(() => {
-  console.log('PATH', path);
   if (path === '/passwordRecovery') {
    setIsOpen(true);
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
- }, [user]);
+ }, []);
 
  return (
   <>

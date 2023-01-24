@@ -22,12 +22,6 @@ export default function Modal({
 
  const refModal = useRef();
 
- const deleteLoginParameter = () => {
-  const currentUrl = new URL(window.location.href);
-  currentUrl.searchParams.delete('login');
-  window.location.href = currentUrl.href;
- };
-
  const handleClickSignUp = () => {
   setIsOpen(false);
   setSignUpModalIsOpen(true);
@@ -41,7 +35,6 @@ export default function Modal({
  useEffect(() => {
   const closeModal = (e) => {
    if (refModal.current && !refModal.current.contains(e.target)) {
-    deleteLoginParameter();
     setIsOpen(false);
    }
   };
@@ -50,7 +43,7 @@ export default function Modal({
   return () => {
    document.removeEventListener('mousedown', closeModal);
   };
- }, [setIsOpen]);
+ }, []);
 
  return (
   <>
