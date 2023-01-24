@@ -8,10 +8,6 @@ import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef, useState } from 'react';
 import UserContext from '../context/UserContext';
 
-const isEmpty = (obj) => {
- return Object.keys(obj).length === 0;
-};
-
 export default function Header({ setIsOpen }) {
  const [logoutVisible, setLogoutVisible] = useState(false);
 
@@ -20,9 +16,10 @@ export default function Header({ setIsOpen }) {
  const router = useRouter();
 
  const logOut = () => {
+  router.push('/');
   setUser({});
   window.localStorage.removeItem('loggedAppUser');
-  setLogoutVisible(false);
+  return setLogoutVisible(false);
  };
 
  const refLogout = useRef();
@@ -42,7 +39,7 @@ export default function Header({ setIsOpen }) {
   return () => {
    document.removeEventListener('mousedown', closeLogout);
   };
- }, [setIsOpen]);
+ }, []);
 
  return (
   <div className={styles.headerWrapper}>
@@ -57,7 +54,7 @@ export default function Header({ setIsOpen }) {
       />
       <span className={styles.navTitle}>Catalog</span>
      </div>
-     {isEmpty(user) ? (
+     {Object.keys(user).length === 0 ? (
       <button className={styles.buttom}>
        <Image className={styles.houseImage} src={house} alt='house' />
        <span onClick={() => setIsOpen(true)} className={styles.buttomText}>

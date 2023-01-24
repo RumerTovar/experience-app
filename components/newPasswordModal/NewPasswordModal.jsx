@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from './NewPasswordModal.module.css';
@@ -7,19 +7,30 @@ import key from '../../assets/images/icons/key.svg';
 import rocketIcon from '../../assets/images/icons/rocket.svg';
 import Input from './Input';
 import { useForm } from '../../hooks/newPassword/useForm';
+import UserContext from '../../context/UserContext';
 
 export default function NewPasswordModal({ userEmail, error }) {
  const router = useRouter();
  const refModal = useRef();
 
+ const { setPath } = useContext(UserContext);
+
  const { form, errors, isSubmitted, handleChange, handleBlur, handleSubmit } =
   useForm(userEmail);
 
  const handleLogin = () => {
-  router.push('/?login=true');
+  const previousPath = router.asPath;
+
+  const originalString = previousPath;
+  const newString = originalString.split('/').slice(0, 2).join('/');
+
+  setPath(newString);
+
+  router.push('/');
  };
 
  const handleClick = () => {
+  setPath();
   router.push('/');
  };
 
