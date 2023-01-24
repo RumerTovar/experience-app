@@ -7,7 +7,13 @@ export default function Footer({ author }) {
    <footer>
     <span>
      Design & illustrations by{' '}
-     <span className={styles.authorFooter}>{author}</span>
+     <a
+      href='mailto:lucianopolo@fakemail.com'
+      target='_blank'
+      rel='noreferrer'
+      className={styles.authorFooter}>
+      {author}
+     </a>
     </span>
    </footer>
   </div>
