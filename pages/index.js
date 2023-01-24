@@ -19,8 +19,7 @@ export default function Home() {
   if (path === '/passwordRecovery') {
    setIsOpen(true);
   }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
- }, []);
+ }, [path]);
 
  return (
   <>
