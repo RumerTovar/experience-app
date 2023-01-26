@@ -7,11 +7,13 @@ import PasswordForgotten from '../components/passwordForgotten/PasswordForgotten
 import SignUpModal from '../components/signUpModal/SignUpModal';
 import styles from './index.module.css';
 import UserContext from '../context/UserContext';
+import VerificationModal from '../components/verificationModal/verificationModal';
 
 export default function Home() {
  const [isOpen, setIsOpen] = useState(false);
  const [signUpModalIsOpen, setSignUpModalIsOpen] = useState(false);
  const [passwordForgottenModal, setPasswordForgottenModal] = useState(false);
+ const [verificationModal, setVerificationModal] = useState(false);
 
  const { user, path } = useContext(UserContext);
 
@@ -39,17 +41,24 @@ export default function Home() {
         setIsOpen={setIsOpen}
         setSignUpModalIsOpen={setSignUpModalIsOpen}
         setPasswordForgottenModal={setPasswordForgottenModal}
+        setVerificationModal={setVerificationModal}
        />
       )}
       {signUpModalIsOpen && (
        <SignUpModal
         setSignUpModalIsOpen={setSignUpModalIsOpen}
-        setIsOpen={setIsOpen}
+        setVerificationModal={setVerificationModal}
        />
       )}
       {passwordForgottenModal && (
        <PasswordForgotten
         setPasswordForgottenModal={setPasswordForgottenModal}
+       />
+      )}
+      {verificationModal && (
+       <VerificationModal
+        setVerificationModal={setVerificationModal}
+        setIsOpen={setIsOpen}
        />
       )}
      </div>
